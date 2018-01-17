@@ -13,6 +13,13 @@
 !/log/.keep
 !/tmp/.keep
 
+#Ignore Byebug command history file.
+.byebug-history
+
+#I don't want to show my secrets
+/config/secrets.yml
+
+
 /node_modules
 /yarn-error.log
 
