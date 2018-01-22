@@ -4,6 +4,11 @@ class PortfoliosController < ApplicationController
     @portfolio_items = Portfolio.all
   end
 
+
+  def new
+    @portfolio_items = Portfolio.new
+  end
+
   def show 
   end
 
