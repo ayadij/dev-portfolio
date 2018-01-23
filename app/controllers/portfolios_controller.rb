@@ -43,7 +43,7 @@ def destroy
     @portfolio_item = Portfolio.find(params[:id])#lookup
     @portfolio_item.destroy #Destroy/delete the record
     respond_to do |format| #Redirect
-      format.html { redirect_to blogs_url, notice: "Record was removed." }
+      format.html { redirect_to portfolios_path, notice: "Record was removed." }
     end
   end
 
