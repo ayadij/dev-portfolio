@@ -1,5 +1,5 @@
 class BlogsController < ApplicationController
-  before_action :set_blog, only: [:show, :edit, :update, :destroy]
+  before_action :set_blog, only: [:show, :edit, :update, :destroy, :toggle_status]
 
   # GET /blogs
   # GET /blogs.json
@@ -20,6 +20,17 @@ class BlogsController < ApplicationController
   # GET /blogs/1/edit                   
   def edit
   end
+
+  def toggle_status
+    if @blog.draft?
+      @blog.published!
+    elsif @blog.published?
+      @blog.draft!
+    end
+    redirect_to blogs_url, notice: 'Post status has been updated.'
+  end
+
+
 
   # POST /blogs
   # POST /blogs.json              create has more logic in it than new bc it actually creates and takes data in. takes title and body input params and creates . the workflow is new to create then performs validation logic. if valid, then format html (make avail in browser) and redirect user.        new-create  empty forum - stored      edit-update   user input-connection to database
@@ -55,7 +66,7 @@ class BlogsController < ApplicationController
     @blog.destroy
     respond_to do |format|
       format.html { redirect_to blogs_url, notice: 'Blog post successfully removed.' }
-      format.json { head :no_content }
+      format.json { head :no_content } 
     end
   end
 
