@@ -18,13 +18,13 @@ ActiveRecord::Schema.define(version: 20180124214027) do
   create_table "blogs", force: :cascade do |t|
     t.string "title"
     t.text "body"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.string "slug"
-    t.integer "status", default: 0
+    t.integer "status",       default: 0
     t.bigint "topic_id"
-    t.index ["slug"], name: "index_blogs_on_slug", unique: true
-    t.index ["topic_id"], name: "index_blogs_on_topic_id"
+    t.index ["slug"],         name: "index_blogs_on_slug",      unique: true
+    t.index ["topic_id"],     name: "index_blogs_on_topic_id"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
