@@ -1,9 +1,3 @@
-GIT
-  remote: https://github.com/ayadij/dijkwel_view_tool
-  revision: f7336415ffe648d7463a9a6aa0151fdfa4487551
-  specs:
-    dijkwel_view_tool (0.1.1)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -70,6 +64,7 @@ GEM
       railties (>= 4.1.0, < 5.2)
       responders
       warden (~> 1.2.3)
+    dijkwel_view_tool (0.1.1)
     erubi (1.7.0)
     execjs (2.7.0)
     ffi (1.9.18)
@@ -193,7 +188,7 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.2)
   devise (~> 4.4, >= 4.4.1)
-  dijkwel_view_tool!
+  dijkwel_view_tool (~> 0.1.1)
   friendly_id (~> 5.1)
   jbuilder (~> 2.5)
   jquery-rails
