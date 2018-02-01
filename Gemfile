@@ -54,3 +54,6 @@ gem 'devise', '~> 4.4', '>= 4.4.1'
 gem 'bootstrap', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'dijkwel_view_tool', '~> 0.1.1'
+gem 'petergate', '~> 1.7'
+
+
