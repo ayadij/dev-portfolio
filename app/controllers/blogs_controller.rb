@@ -1,5 +1,10 @@
 class BlogsController < ApplicationController
   before_action :set_blog, only: [:show, :edit, :update, :destroy, :toggle_status]
+  access all: [:show, :index], user: {except: [:destroy, :new, :create, :update, :edit]}, site_admin: :all
+  # all-- we want everyone to access the show and index
+  # user-- can comment and see blogs. cannot delete or create blogs
+  # siteadmin-- can do basically everything
+
   layout "blog"
   
   # GET /blogs
