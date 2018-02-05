@@ -1,54 +1,39 @@
 class BlogsController < ApplicationController
   before_action :set_blog, only: [:show, :edit, :update, :destroy, :toggle_status]
-  access all: [:show, :index], user: {except: [:destroy, :new, :create, :update, :edit]}, site_admin: :all
-  # all-- we want everyone to access the show and index
-  # user-- can comment and see blogs. cannot delete or create blogs
-  # siteadmin-- can do basically everything
-
   layout "blog"
-  
+  access all: [:show, :index], user: {except: [:destroy, :new, :create, :update, :edit, :toggle_status]}, site_admin: :all
+
   # GET /blogs
   # GET /blogs.json
   def index
-    @blogs = Blog.all
+    @blogs = Blog.page(params[:page]).per(5)
     @page_title = "My Portfolio Blog"
   end
 
   # GET /blogs/1
-  # GET /blogs/1.json # method also called action
+  # GET /blogs/1.json
   def show
     @page_title = @blog.title
-    @seo_keywords = @blog.body #seach engine optimization
+    @seo_keywords = @blog.body
   end
 
-  # GET /blogs/new                      #new vs create
+  # GET /blogs/new
   def new
     @blog = Blog.new
   end
 
-  # GET /blogs/1/edit                   
+  # GET /blogs/1/edit
   def edit
   end
 
-  def toggle_status
-    if @blog.draft?
-      @blog.published!
-    elsif @blog.published?
-      @blog.draft!
-    end
-    redirect_to blogs_url, notice: 'Post status has been updated.'
-  end
-
-
-
   # POST /blogs
-  # POST /blogs.json              create has more logic in it than new bc it actually creates and takes data in. takes title and body input params and creates . the workflow is new to create then performs validation logic. if valid, then format html (make avail in browser) and redirect user.        new-create  empty forum - stored      edit-update   user input-connection to database
+  # POST /blogs.json
   def create
     @blog = Blog.new(blog_params)
 
     respond_to do |format|
       if @blog.save
-        format.html { redirect_to @blog, notice: '*Blog was successfully created.*'}
+        format.html { redirect_to @blog, notice: 'Your post is now live.' }
       else
         format.html { render :new }
       end
@@ -67,13 +52,24 @@ class BlogsController < ApplicationController
     end
   end
 
-  # DELETE /blogs/1l
+  # DELETE /blogs/1
   # DELETE /blogs/1.json
   def destroy
     @blog.destroy
     respond_to do |format|
-      format.html { redirect_to blogs_url, notice: 'Blog post successfully removed.' }
+      format.html { redirect_to blogs_url, notice: 'Post was removed.' }
+      format.json { head :no_content }
     end
+  end
+
+  def toggle_status
+    if @blog.draft?
+      @blog.published!
+    elsif @blog.published?
+      @blog.draft!
+    end
+        
+    redirect_to blogs_url, notice: 'Post status has been updated.'
   end
 
   private
@@ -87,6 +83,3 @@ class BlogsController < ApplicationController
       params.require(:blog).permit(:title, :body)
     end
 end
-
-#rails works on convention over configuration
-#a lot processes in the background for example ew
