@@ -18,7 +18,7 @@
 
 #I don't want to show my secrets
 /config/secrets.yml
-
+/.env
 /node_modules
 /yarn-error.log
 
