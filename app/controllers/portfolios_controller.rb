@@ -1,8 +1,8 @@
 class PortfoliosController < ApplicationController
-  before_action :set_portfolio_item, only: [:edit, :update, :show, :destroy]
+  before_action :set_portfolio_item, only: [:edit, :show, :update, :destroy]
   access all: [:show, :index, :angular], user: {except: [:destroy, :new, :create, :update, :edit, :sort]}, site_admin: :all
-  layout 'portfolio'
-  
+    layout 'portfolio'
+    
   def index
     @portfolio_items = Portfolio.by_position
   end
@@ -11,7 +11,8 @@ class PortfoliosController < ApplicationController
     params[:order].each do |key, value|
       Portfolio.find(value[:id]).update(position: value[:position])
     end
-    render body: nil
+
+    render nothing: true
   end
 
   def angular
@@ -52,8 +53,11 @@ class PortfoliosController < ApplicationController
   end
 
   def destroy
-    @portfolio_item.destroy # Destroy/delete the record
-    respond_to do |format| # Redirect
+    # Destroy/delete the record
+    @portfolio_item.destroy
+
+    # Redirect
+    respond_to do |format|
       format.html { redirect_to portfolios_url, notice: 'Record was removed.' }
     end
   end
@@ -64,7 +68,10 @@ class PortfoliosController < ApplicationController
     params.require(:portfolio).permit(:title,
                                       :subtitle,
                                       :body,
-                                      technologies_attributes: [:name])
+                                      :main_image,
+                                      :thumb_image,
+                                      technologies_attributes: [:name]
+                                     )
   end
 
   def set_portfolio_item
