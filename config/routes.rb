@@ -16,8 +16,12 @@ Rails.application.routes.draw do
     end
   end
   
+  mount ActionCable.server => '/cable'
+
   root to: 'pages#home'
 end
+
+
 #routes how is this possible?
 # resouces is a special word. it encapsulates popular routes applications use
 # contains all routes of :index create new show update destroy (CRUD funcitonality)
