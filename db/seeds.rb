@@ -1,3 +1,20 @@
+User.create!(
+  name:"Admin User", 
+  email:"asdfasdf@gmail.com", 
+  password:"asdfasdf", 
+  password_confirmation:"asdfasdf", 
+  role:"site_admin"
+)
+puts "1 Admin User created"
+
+User.create!(
+  name:"User", 
+  email:"qwerqwer@gmail.com", 
+  password:"qwerqwer", 
+  password_confirmation:"qwerqwer"
+)
+puts "1 regular user created"
+
 3.times do |topic|
   Topic.create!(
     title: "Topic #{topic}"
@@ -57,4 +74,4 @@ end
 puts "3 technologies created"
 
 
-User.create(name:"Dillon Porter", email:"dillon1@dillon.com", password:"asdfasdf", password_confirmation:"asdfasdf", role:"site_admin")
+
