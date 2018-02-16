@@ -11,7 +11,14 @@
 
   <div class="form-group">
     <%= f.label :topic_id %>
-
+    <%= f.collection_select(:topic_id, Topic.all, :id, :title,
+                            {
+                              selected: ,
+                              include_blank: true
+                            },
+                            class: "form-control"
+                            ) 
+    %>
   </div>
 
 
