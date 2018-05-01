@@ -45,3 +45,6 @@ end
 
 ### BLOGS
 - sidebar links
+
+
+$ cd Documents/code/rails-app/DevcampPortfolio
