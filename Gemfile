@@ -49,3 +49,7 @@ gem 'redcarpet', '~> 3.4'
 gem 'coderay', '~> 1.1', '>= 1.1.2'
 
 ruby "2.4.0"
+
+
+gem 'loofah', '~> 2.2.1'
+gem 'rails-html-sanitizer', '~> 1.0.4'
